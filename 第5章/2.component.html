@@ -9,17 +9,18 @@
 </head>
 <body>
     <div id="Application">
-        <my-alert></my-alert>
-        <my-alert></my-alert>
+        <my-alert title="按钮1" ></my-alert>
+        <my-alert title="按钮2" ></my-alert>
+        <!-- inputText是父组件变量 -->
         <my-input v-model="inputText"></my-input>
         <div>{{inputText}}</div>
-        <button @click="this.inputText = ''">清空</button>
+        <button @click="this.inputText = '清除' ">清空</button>
     </div>
     <script>
         const App = Vue.createApp({
             data(){
                 return {
-                    inputText:""
+                    inputText:"1",
                 }
             },
         })
@@ -27,12 +28,14 @@
             props:["modelValue"],
             methods:{
                 action(event){
+                    // this.$emit('update:modelValue', event.target.value) 会发射一个名为 update:modelValue 的事件，并将输入框的新值作为参数传递给父组件。
                     this.$emit('update:modelValue', event.target.value)  
                 }
             },
             template:`<div><span>输入框：</span><input :value="modelValue" @input="action"/></div>`
         }
         const alertComponent = { 
+            props:["title"],
             data() {
                 return {
                     msg:"警告框提示", // 标题信息
@@ -44,7 +47,7 @@
                     alert(this.msg + this.count++) // 弹出提示框
                 }
             },  
-            template:`<div><button @click="click">按钮</button></div>`
+            template:`<div><button @click="click">{{title}}</button></div>`
         } 
         App.component("my-alert",alertComponent) 
         App.component("my-input", inputComponent)

@@ -33,14 +33,14 @@
                 }
             },
             methods: {
-                click() {
-                    throttleTool(()=>{
-                        console.log(Date())
-                    }, 2000)
-                }
-                // click: _.debounce(function(){
-                //     console.log(Date())
-                // }, 2000)
+                // click() {
+                //     throttleTool(()=>{
+                //         console.log(Date())
+                //     }, 2000)
+                // }
+                click: _.debounce(function(){
+                    console.log(Date())
+                }, 2000)
             }
         }
         Vue.createApp(App).mount("#Application") 
