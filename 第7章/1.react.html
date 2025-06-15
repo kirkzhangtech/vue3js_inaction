@@ -10,8 +10,8 @@
     </style>
 </head>
 <body>
-<!-- 
-    <script>
+
+    <!-- <script>
         let a = 1;
         let b = 2;
         let sum = a + b;
@@ -19,8 +19,8 @@
         a = 3;
         b = 4;
         console.log(sum);
-    </script>
-     -->
+    </script> -->
+    
     <script>
         // 数据对象
         let a = {
@@ -33,6 +33,7 @@
         let trigger = null;
         // 数据变量的处理器，当数据发生变化时，调用触发器刷新
         handleA = {
+            // target[key] = a.value 设置为3
             set(target, key, value) {
                 target[key] = value
                 if (trigger) {
@@ -50,6 +51,10 @@
         }
         // 进行对象的代理包装
         let pa = new Proxy(a, handleA)
+        // proxy函数是如何运行的
+
+
+
         let pb = new Proxy(b, handleB)
         let sum = 0;
         // 实现触发器逻辑
